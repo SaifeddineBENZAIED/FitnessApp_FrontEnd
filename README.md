@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # # Fitness Web App - Frontend (Angular)
 
 This repository contains the **frontend part** of the **Fitness Web App**, built using **Angular** and **Angular Material**. The frontend provides a **modern, interactive, and user-friendly interface** for users to access personalized exercise and meal recommendations. The app integrates with a backend powered by **Django** and uses **Machine Learning algorithms** to generate recommendations.
@@ -161,4 +160,3 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
->>>>>>> e5f46e1 (initial commit)
