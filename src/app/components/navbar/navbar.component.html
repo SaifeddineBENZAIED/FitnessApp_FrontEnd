@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <div class="nav-left">
+    <div class="nav-logo" (click)="navigateToHome()">
+      <span>Fitness Gym</span>
+    </div>
+    <div class="nav-links">
+      <a mat-button routerLink="/">Home</a>
+      <a mat-button routerLink="/about">About</a>
+      <a mat-button routerLink="/services">Services</a>
+      <a mat-button routerLink="/calculators">Calculators</a>
+      <a mat-button routerLink="/review">Reviews</a>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div *ngIf="isLoggedIn" class="user-menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="user-button">
+      <img [src]="userImage" alt="User Image" class="user-image" (error)="onImageError($event)">
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/profile">Profile &nbsp; <i class="fa-solid fa-user"></i></button>
+      <button mat-menu-item (click)="logout()">Logout &nbsp; <i class="fa-solid fa-right-from-bracket"></i></button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

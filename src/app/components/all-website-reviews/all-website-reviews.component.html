@@ -1,0 +1,25 @@
+<div class="all-reviews-container mat-elevation-z3">
+  <div class="carousel">
+    <button class="carousel-control prev" (click)="prevSlide()" [disabled]="currentSlide === 0" mat-icon-button>
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <div class="carousel-inner">
+      <div *ngFor="let review of allReviews; let i = index" class="carousel-item" [class.active]="i === currentSlide">
+        <div class="review-card">
+          <p><strong>User:</strong> {{ review.user }}</p>
+          <p><strong>Rating:</strong> 
+            <span *ngFor="let star of [1,2,3,4,5]">
+              <mat-icon *ngIf="star <= review.rating">star</mat-icon>
+              <mat-icon *ngIf="star > review.rating">star_border</mat-icon>
+            </span>
+          </p>
+          <p><strong>Comment:</strong> {{ review.content }}</p>
+          <p><strong>Date:</strong> {{ review.updated_at | date:'short' }}</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control next" (click)="nextSlide()" [disabled]="currentSlide === allReviews.length - 1" mat-icon-button>
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</div>

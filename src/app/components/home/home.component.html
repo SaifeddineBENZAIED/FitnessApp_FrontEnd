@@ -1,0 +1,77 @@
+<div class="home-container">
+  <!-- Motivation Section -->
+  <div *ngIf="isAuthenticated && randomMotivation!==''" class="motivation-banner">
+    <span class="close-btn" (click)="hideMotivation()"><i class="fa-solid fa-xmark"></i></span>
+    <p><i>{{ randomMotivation }}</i></p>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="carousel-container">
+      <c-carousel [interval]="5000" class="custom-carousel">
+        <c-carousel-indicators></c-carousel-indicators>
+        <c-carousel-inner>
+          <c-carousel-item *ngFor="let slide of slides">
+            <img [src]="slide.src" alt="{{ slide.src }}" class="d-block w-100 carousel-image" loading="lazy" />
+          </c-carousel-item>
+        </c-carousel-inner>
+        <c-carousel-control caption="Previous" direction="prev"></c-carousel-control>
+        <c-carousel-control caption="Next" direction="next"></c-carousel-control>
+      </c-carousel>
+    </div>
+    <div class="content">
+      <h1>Welcome to our Fitness Gym</h1>
+      <p>Your journey to a healthier life starts here.</p>
+      <div class="goal-display" *ngIf="!isAuthenticated">
+        <p class="typing-text"><span>{{ currentGoal }}</span><span class="cursor">|</span></p>
+      </div>
+      <div *ngIf="!isAuthenticated" class="button-row">
+        <button mat-raised-button color="primary" (click)="register()">Join Now</button>
+        <button mat-raised-button color="accent" (click)="redirectToLogin()">Login</button>
+      </div>
+      <div *ngIf="isAuthenticated" class="user-message m-1">
+        <p>Welcome back, <b>{{ user.username }}</b>! <i class="fa-regular fa-face-smile-beam"></i></p>
+        <p>We're here to help you achieve your goal of <strong>{{ user.fitness_goal }}</strong>.</p>
+        <p>Explore our services and calculators tailored to assist you on every step of your journey.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <div class="services-section">
+    <h2>Our Services</h2>
+    <div class="service-cards">
+      <mat-card *ngFor="let service of services" (click)="navigateTo(service.route)">
+        <mat-card-header>
+          <mat-icon>{{ service.icon }}</mat-icon>
+          <mat-card-title>{{ service.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ service.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Calculators Section -->
+  <div class="calculators-section">
+    <h2>Fitness Calculators</h2>
+    <div class="calculator-cards">
+      <mat-card *ngFor="let calculator of calculators" (click)="navigateToCalculators()">
+        <mat-card-header>
+          <mat-icon>{{ calculator.icon }}</mat-icon>
+          <mat-card-title>{{ calculator.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ calculator.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Reviews Section -->
+  <div class="reviews-section">
+    <h2>User Reviews</h2>
+    <app-all-website-reviews></app-all-website-reviews>
+  </div>
+</div>

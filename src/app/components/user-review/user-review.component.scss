@@ -1,0 +1,105 @@
+.user-review-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff; /* Changed to white for better contrast */
+  border-radius: 12px; /* Slightly more rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+
+  &:hover {
+      transform: translateY(-5px); /* Slight lift on hover */
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+  }
+
+  h2 {
+      margin-bottom: 30px;
+      text-align: center; /* Center align the title */
+      font-size: 2rem; /* Increase font size */
+      color: #333;
+      font-weight: 700; /* Make the title bolder */
+  }
+
+  .no-review-message, .existing-review {
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to sections */
+  }
+
+  .no-review-message {
+      background-color: #fff4f4; /* Softer background color */
+      border: 1px solid #f7c6c7; /* Softer border color */
+      p {
+          margin-bottom: 20px;
+          color: #d9534f; /* Darker text color */
+          font-weight: 500;
+      }
+  }
+
+  .existing-review {
+      background-color: #f4fff4; /* Softer background color */
+      border: 1px solid #c7e6c7; /* Softer border color */
+      h5 {
+          font-size: 1.5rem;
+          color: #5cb85c;
+          margin-bottom: 10px;
+      }
+      p {
+          margin-bottom: 10px;
+          color: #5cb85c;
+          font-weight: 500;
+      }
+      button {
+          margin-top: 15px;
+          padding: 10px 25px;
+          font-size: 1rem;
+          border-radius: 20px;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+          &:hover {
+              background-color: #4cae4c;
+              transform: translateY(-2px);
+          }
+      }
+  }
+
+  mat-form-field {
+      width: 100%;
+      margin-bottom: 25px;
+      background-color: #ffffff; /* White background for better contrast */
+      border-radius: 8px; /* Slightly rounded corners */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+
+      &:focus-within {
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Increase shadow on focus */
+          border-color: #80deea; /* Focus color */
+      }
+
+      mat-label {
+          font-size: 1rem;
+          color: #888;
+          transition: all 0.3s ease;
+      }
+
+      mat-input-element {
+          padding: 12px 20px;
+          border-radius: 5px;
+          transition: border 0.3s ease, box-shadow 0.3s ease;
+      }
+  }
+
+  button {
+      width: 100%;
+      padding: 12px 40px;
+      font-size: 16px;
+      border-radius: 25px; /* Rounded corners for buttons */
+      transition: background-color 0.3s ease, transform 0.2s ease;
+
+      &:hover {
+          background-color: #333; /* Darker color on hover */
+          color: #fff; /* Inverted text color on hover */
+          transform: translateY(-2px); /* Slight lift on hover */
+      }
+  }
+}

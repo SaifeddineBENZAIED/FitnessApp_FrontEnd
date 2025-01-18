@@ -1,0 +1,111 @@
+.trainer-list-container {
+  text-align: center;
+  padding: 20px;
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+
+    input {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 200px;
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 300px;
+
+      mat-slider {
+        width: 100%;
+      }
+    }
+
+    button {
+      margin-top: 10px;
+      background-color: #3f51b5;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #303f9f;
+      }
+    }
+  }
+
+  .trainer-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+
+    .trainer-card {
+      width: 280px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: left;
+      transition: transform 0.3s, box-shadow 0.3s;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        object-fit: cover;
+      }
+
+      p {
+        margin: 5px 0;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      button {
+        margin-top: 10px;
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 8px;
+      }
+    }
+  }
+
+  .pagination {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    span {
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 8px;
+      background-color: #3f51b5;
+      color: white;
+
+      &:hover {
+        background-color: #303f9f;
+      }
+    }
+  }
+}

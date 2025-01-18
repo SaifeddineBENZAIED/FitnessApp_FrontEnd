@@ -1,0 +1,14 @@
+<div class="recommendation-container">
+  <h1>Your Recommended Meals <i class="fa-solid fa-utensils"></i></h1>
+
+  <div class="recommendations-list m-5" *ngIf="recommendedMeals.length > 0">
+    <h2>Recommended Meals</h2>
+    <div *ngFor="let meal of recommendedMeals" class="meal-card">
+      <div class="meal-info">
+        <h3>{{ meal.meal }}</h3>
+        <p><strong>Ingredients:</strong> {{ meal.ingredients }}</p>
+        <p><strong>Instructions:</strong> {{ meal.instructions }}</p>
+      </div>
+    </div>
+  </div>
+</div>

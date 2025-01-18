@@ -1,0 +1,40 @@
+<div class="trainer-list-container">
+    <h1>Trainers</h1>
+    <div class="filter-bar">
+      <input type="text" placeholder="Search by First Name" [(ngModel)]="filter.first_name">
+      <input type="text" placeholder="Search by Last Name" [(ngModel)]="filter.last_name">
+      <input type="text" placeholder="Specialty" [(ngModel)]="filter.specialty">
+      <input type="number" placeholder="Min Experience" [(ngModel)]="filter.min_experience">
+      <input type="number" placeholder="Max Experience" [(ngModel)]="filter.max_experience">
+      <input type="number" placeholder="Min Rating" [(ngModel)]="filter.min_rating">
+      <input type="number" placeholder="Max Rating" [(ngModel)]="filter.max_rating">
+      <button mat-raised-button color="primary" (click)="search()">Search</button>
+    </div>
+    <br><hr>
+    <div *ngIf="trainers.length > 0" class="trainer-list">
+      <div *ngFor="let trainer of trainers" class="trainer-card">
+        <img [src]="trainer.profile_image || 'assets/trainerDefaultImg.png'"
+          (error)="onImageError($event)"
+          alt="{{trainer.first_name}} {{trainer.last_name}}" height="150px" width="80px">
+        <p><strong>Name:</strong> {{trainer.first_name}} {{trainer.last_name}}</p>
+        <p><strong>Email:</strong> {{trainer.email}}</p>
+        <p><strong>Phone:</strong> {{trainer.phone}}</p>
+        <p><strong>Specialty:</strong> {{trainer.specialty}}</p>
+        <p><strong>Experience Years:</strong> {{trainer.experience_years}}</p>
+        <p><strong>Bio:</strong> {{trainer.bio}}</p>
+        <p>
+          <strong>Average Rating:</strong>
+          <span *ngIf="trainer.average_rating !== -1">{{ trainer.average_rating | number:'1.1-1' }}</span>
+          <span *ngIf="trainer.average_rating === -1">No ratings or reviews yet</span>
+        </p>
+        <button mat-raised-button color="accent" (click)="openReviewDialog(trainer)">Review</button>
+        <button mat-raised-button color="primary" (click)="viewReviews(trainer)">View Reviews</button>
+      </div>
+    </div>
+    <div class="pagination">
+      <button mat-button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button mat-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </div>
+  

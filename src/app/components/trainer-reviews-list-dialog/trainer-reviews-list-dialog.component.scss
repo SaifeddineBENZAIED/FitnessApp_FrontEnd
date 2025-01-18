@@ -1,0 +1,70 @@
+.reviews-container {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 15px; // To avoid content overlap with scrollbar
+
+  .review-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+
+      p {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+
+        mat-icon {
+          color: #ffb400;
+          margin-left: 5px;
+        }
+      }
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+
+      &.review-date {
+        font-size: 0.85rem;
+        color: #777;
+        text-align: right;
+      }
+    }
+  }
+
+  .no-reviews {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+  }
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 24px;
+
+  button {
+    padding: 8px 24px;
+    font-weight: bold;
+  }
+}

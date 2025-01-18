@@ -1,0 +1,35 @@
+<div class="login-container">
+  <h1>Login</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Enter your email">
+      <mat-error *ngIf="loginForm.get('email')!.invalid">
+        Email is required.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" placeholder="Enter your password">
+      <mat-error *ngIf="loginForm.get('password')!.invalid">
+        Password is required.
+      </mat-error>
+    </mat-form-field>
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit">Login</button>
+    </div>
+  </form>
+
+  <div class="redirect-register">
+    <p>Don't have an account?</p>
+    <div class="button-container">
+      <button mat-raised-button color="accent" (click)="redirectToRegister()">Register</button>
+    </div>
+  </div>
+
+  <mat-card class="reset-password-card">
+    <a mat-button color="primary" [routerLink]="['/password-reset']" class="reset-password-link">Forgot Password?</a>
+  </mat-card>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</div>

@@ -1,0 +1,204 @@
+<div class="categories__container">
+  <h3 class="categories__suptitle">Our Calculators</h3>
+  <h1 class="categories__title">Health & Fitness Calculators</h1>
+  <p class="categories__description">Use our calculators to help plan and live a healthy lifestyle. Calculate your BMI, BMR, daily calorie needs, body fat percentage, and waist-to-hip ratio to make informed decisions about your fitness and nutrition.</p>
+  <div class="categories__grid">
+    <!-- BMI Calculator -->
+    <a class="category" (click)="navigateTo(bmiModal)">
+      <img src="assets/bmi-icon.png" alt="BMI Calculator" class="category__icon">
+      <div class="category__info">
+        <h4 class="category__title">BMI Calculator</h4>
+        <p class="category__description">Compute your Body Mass Index to understand your body weight category.</p>
+      </div>
+    </a>
+    <!-- BMR Calculator -->
+    <a class="category" (click)="navigateTo(bmrModal)">
+      <img src="assets/bmr-icon.webp" alt="BMR Calculator" class="category__icon">
+      <div class="category__info">
+        <h4 class="category__title">BMR Calculator</h4>
+        <p class="category__description">Determine your Basal Metabolic Rate to understand your body's energy needs.</p>
+      </div>
+    </a>
+    <!-- Calorie Needs Calculator -->
+    <a class="category" (click)="navigateTo(calorieModal)">
+      <img src="assets/calorie-icon.png" alt="Calorie Calculator" class="category__icon">
+      <div class="category__info">
+        <h4 class="category__title">Calorie Calculator</h4>
+        <p class="category__description">Calculate your daily calorie needs based on your activity level and goals.</p>
+      </div>
+    </a>
+    <!-- Body Fat Percentage Calculator -->
+    <a class="category" (click)="navigateTo(bodyFatModal)">
+      <img src="assets/body-fat-icon.jpg" alt="Body Fat Percentage Calculator" class="category__icon">
+      <div class="category__info">
+        <h4 class="category__title">Body Fat Percentage Calculator</h4>
+        <p class="category__description">Calculate your body fat percentage based on your measurements.</p>
+      </div>
+    </a>
+    <!-- WHR Calculator -->
+    <a class="category" (click)="navigateTo(whrModal)">
+      <img src="assets/whr-icon.png" alt="WHR Calculator" class="category__icon">
+      <div class="category__info">
+        <h4 class="category__title">WHR Calculator</h4>
+        <p class="category__description">Calculate your waist-to-hip ratio to understand fat distribution.</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- BMI Modal -->
+<ng-template #bmiModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">BMI Calculator</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="heightBMI" class="form-label">Height (cm)</label>
+        <input type="number" class="form-control" [(ngModel)]="height" name="heightBMI" id="heightBMI">
+      </div>
+      <div class="mb-3">
+        <label for="weightBMI" class="form-label">Weight (kg)</label>
+        <input type="number" class="form-control" [(ngModel)]="weight" name="weightBMI" id="weightBMI">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="calculateBMI()">Calculate</button>
+    </form>
+    <p *ngIf="bmi">Your BMI is: {{ bmi }}</p>
+  </div>
+</ng-template>
+
+<!-- BMR Modal -->
+<ng-template #bmrModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">BMR Calculator</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="heightBMR" class="form-label">Height (cm)</label>
+        <input type="number" class="form-control" [(ngModel)]="height" name="heightBMR" id="heightBMR">
+      </div>
+      <div class="mb-3">
+        <label for="weightBMR" class="form-label">Weight (kg)</label>
+        <input type="number" class="form-control" [(ngModel)]="weight" name="weightBMR" id="weightBMR">
+      </div>
+      <div class="mb-3">
+        <label for="ageBMR" class="form-label">Age</label>
+        <input type="number" class="form-control" [(ngModel)]="age" name="ageBMR" id="ageBMR">
+      </div>
+      <div class="mb-3">
+        <label for="genderBMR" class="form-label">Gender</label>
+        <select class="form-select" [(ngModel)]="gender" name="genderBMR" id="genderBMR">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="calculateBMR()">Calculate</button>
+    </form>
+    <p *ngIf="bmr">Your BMR is: {{ bmr }}</p>
+  </div>
+</ng-template>
+
+<!-- Calorie Needs Modal -->
+<ng-template #calorieModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Calorie Needs Calculator</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="heightCalorie" class="form-label">Height (cm)</label>
+        <input type="number" class="form-control" [(ngModel)]="height" name="heightCalorie" id="heightCalorie">
+      </div>
+      <div class="mb-3">
+        <label for="weightCalorie" class="form-label">Weight (kg)</label>
+        <input type="number" class="form-control" [(ngModel)]="weight" name="weightCalorie" id="weightCalorie">
+      </div>
+      <div class="mb-3">
+        <label for="ageCalorie" class="form-label">Age</label>
+        <input type="number" class="form-control" [(ngModel)]="age" name="ageCalorie" id="ageCalorie">
+      </div>
+      <div class="mb-3">
+        <label for="genderCalorie" class="form-label">Gender</label>
+        <select class="form-select" [(ngModel)]="gender" name="genderCalorie" id="genderCalorie">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="activityLevel" class="form-label">Activity Level</label>
+        <select class="form-select" [(ngModel)]="activityLevel" name="activityLevel" id="activityLevel">
+          <option value="sedentary">Sedentary</option>
+          <option value="lightly active">Lightly Active</option>
+          <option value="moderately active">Moderately Active</option>
+          <option value="very active">Very Active</option>
+          <option value="super active">Super Active</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="calculateCalorieNeeds()">Calculate</button>
+    </form>
+    <p *ngIf="calorieNeeds">Your Calorie Needs are: {{ calorieNeeds }}</p>
+  </div>
+</ng-template>
+
+<!-- Body Fat Percentage Modal -->
+<ng-template #bodyFatModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Body Fat Percentage Calculator</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="genderBF" class="form-label">Gender</label>
+        <select class="form-select" [(ngModel)]="gender" name="genderBF" id="genderBF">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="heightBF" class="form-label">Height (cm)</label>
+        <input type="number" class="form-control" [(ngModel)]="height" name="heightBF" id="heightBF">
+      </div>
+      <div class="mb-3">
+        <label for="waistBF" class="form-label">Waist (cm)</label>
+        <input type="number" class="form-control" [(ngModel)]="waist" name="waistBF" id="waistBF">
+      </div>
+      <div class="mb-3">
+        <label for="neckBF" class="form-label">Neck (cm)</label>
+        <input type="number" class="form-control" [(ngModel)]="neck" name="neckBF" id="neckBF">
+      </div>
+      <div *ngIf="gender === 'female'" class="mb-3">
+        <label for="hipBF" class="form-label">Hip (cm)</label>
+        <input type="number" class="form-control" [(ngModel)]="hip" name="hipBF" id="hipBF">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="calculateBodyFatPercentage()">Calculate</button>
+    </form>
+    <p *ngIf="bodyFatPercentage">Your Body Fat Percentage is: {{ bodyFatPercentage }}</p>
+  </div>
+</ng-template>
+
+<!-- WHR Modal -->
+<ng-template #whrModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">WHR Calculator</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="waistWHR" class="form-label">Waist (cm)</label>
+        <input type="number" class="form-control" [(ngModel)]="waist" name="waistWHR" id="waistWHR">
+      </div>
+      <div class="mb-3">
+        <label for="hipWHR" class="form-label">Hip (cm)</label>
+        <input type="number" class="form-control" [(ngModel)]="hip" name="hipWHR" id="hipWHR">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="calculateWHR()">Calculate</button>
+    </form>
+    <p *ngIf="whr">Your WHR is: {{ whr }}</p>
+  </div>
+</ng-template>

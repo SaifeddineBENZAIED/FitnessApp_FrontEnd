@@ -1,0 +1,17 @@
+<div class="recommendation-container">
+  <h1>Your Recommended Exercises <i class="fa-solid fa-dumbbell"></i></h1>
+
+  <div class="recommendations-list m-5" *ngIf="recommendedExercises.length > 0">
+    <h2>Recommended Exercises</h2>
+    <div *ngFor="let exercise of recommendedExercises" class="exercise-card" (click)="openDialog(exercise)">
+      <div class="exercise-info">
+        <h3>{{ exercise.name }}</h3>
+        <p><strong>Repetitions/Minutes:</strong> {{ exercise.repetitions_minutes }}</p>
+        <p><strong>Sets:</strong> {{ exercise.sets }}</p>
+      </div>
+      <div class="exercise-action">
+        <button mat-raised-button color="primary">View Details</button>
+      </div>
+    </div>
+  </div>
+</div>

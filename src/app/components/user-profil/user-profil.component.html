@@ -1,0 +1,155 @@
+<div class="profile-container">
+  <mat-card class="profile-card">
+    <mat-card class="profile-image-card">
+      <button (click)="editMode ? fileInput.click() : null" [disabled]="!editMode" style="background-color: transparent; border: none;">
+        <img [src]="imageUrl || userProfile?.profile_image_url || 'assets/fitness-icon.jpg'" (error)="onImageError($event)" class="profile-image" height="150px" width="150px" id="profileImage" alt="User profile image">
+        <input type="file" accept="image/*" hidden #fileInput (change)="onFileSelected($event)">
+      </button>
+    </mat-card>
+    <mat-card-title>{{ userProfile?.username }}</mat-card-title>
+    <mat-card-subtitle><i class="fa-solid fa-envelope"></i> {{ userProfile?.email }}</mat-card-subtitle>
+  </mat-card>
+
+  <div class="profile-info-container">
+    <mat-card class="profile-info-card">
+      <form [formGroup]="profileForm" *ngIf="editMode" (ngSubmit)="updateProfile()">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Age</mat-label>
+          <input matInput formControlName="age" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Height (cm)</mat-label>
+          <input matInput formControlName="height" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Weight (kg)</mat-label>
+          <input matInput formControlName="weight" type="number">
+        </mat-form-field>
+
+        <!-- Gender -->
+        <mat-form-field appearance="outline">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Fitness Goal -->
+        <mat-form-field appearance="outline">
+          <mat-label>Fitness Goal</mat-label>
+          <mat-select formControlName="fitness_goal">
+            <mat-option *ngFor="let goal of fitnessGoals" [value]="goal">
+              {{ goal }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Activity Level -->
+        <mat-form-field appearance="outline">
+          <mat-label>Activity Level</mat-label>
+          <mat-select formControlName="activity_level">
+            <mat-option *ngFor="let level of activityLevels" [value]="level">
+              {{ level }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Experience Level -->
+        <mat-form-field appearance="outline">
+          <mat-label>Experience Level</mat-label>
+          <mat-select formControlName="experience_level">
+            <mat-option *ngFor="let level of experienceLevels" [value]="level">
+              {{ level }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Dietary Preferences -->
+        <mat-form-field appearance="outline">
+          <mat-label>Dietary Preferences</mat-label>
+          <mat-select formControlName="dietary_preferences" multiple>
+            <mat-select-trigger>
+              <mat-chip *ngFor="let preference of profileForm.get('dietary_preferences')?.value" [removable]="true" (removed)="removePreference(preference)">
+                {{preference}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+            </mat-select-trigger>
+            <mat-option *ngFor="let preference of dietaryPreferences" [value]="preference">
+              {{preference}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Medical Conditions -->
+        <mat-form-field appearance="outline">
+          <mat-label>Medical Conditions</mat-label>
+          <mat-select formControlName="medical_conditions" multiple>
+            <mat-select-trigger>
+              <mat-chip *ngFor="let condition of profileForm.get('medical_conditions')?.value" [removable]="true" (removed)="removeCondition(condition)">
+                {{condition}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+            </mat-select-trigger>
+            <mat-option *ngFor="let condition of medicalConditions" [value]="condition">
+              {{condition}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phone_number">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <input matInput formControlName="country">
+        </mat-form-field>
+
+        <!-- Save and Cancel Buttons -->
+        <div class="button-group">
+          <button mat-raised-button color="primary" type="submit">Save</button>
+          <button mat-raised-button color="warn" type="button" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+
+      <div *ngIf="!editMode">
+        <p><strong>Username:</strong> {{ userProfile?.username }}</p>
+        <p><strong>Age:</strong> {{ userProfile?.age }}</p>
+        <p><strong>Height:</strong> {{ userProfile?.height }} cm</p>
+        <p><strong>Weight:</strong> {{ userProfile?.weight }} kg</p>
+        <p><strong>Gender:</strong> {{ userProfile?.gender }}</p>
+        <p><strong>Fitness Goal:</strong> {{ userProfile?.fitness_goal }}</p>
+        <p><strong>Activity Level:</strong> {{ userProfile?.activity_level }}</p>
+        <p><strong>Experience Level:</strong> {{ userProfile?.experience_level }}</p>
+        <p><strong>Dietary Preferences:</strong> 
+          {{ userProfile?.dietary_preferences?.length ? userProfile.dietary_preferences.join(', ') : 'Not Specified' }}
+       </p>
+       <p><strong>Medical Conditions:</strong> 
+          {{ userProfile?.medical_conditions?.length ? userProfile.medical_conditions.join(', ') : 'Not Specified' }}
+       </p>
+       <p><strong>Phone Number:</strong> 
+          {{ userProfile?.phone_number ? userProfile.phone_number : 'Not Specified' }}
+       </p>
+       <p><strong>Country:</strong> 
+          {{ userProfile?.country ? userProfile.country : 'Not Specified' }}
+       </p>
+        
+        <div *ngIf="!editMode">
+          <!-- Display user profile details here -->
+          <div class="button-group">
+            <button mat-raised-button color="primary" (click)="toggleEditMode()">Edit Profile &nbsp; <i class="fa-solid fa-user-pen"></i></button>
+            <button mat-raised-button color="accent" [routerLink]="['/password-change']">Change Password &nbsp; <i class="fa-solid fa-right-left"></i></button>
+          </div>
+        </div>
+
+      </div>
+    </mat-card>
+
+  </div>
+</div>

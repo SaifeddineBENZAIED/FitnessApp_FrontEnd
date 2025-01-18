@@ -1,0 +1,128 @@
+.all-reviews-container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #3f51b5;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .carousel {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+      overflow: hidden;
+      padding: 0 60px; /* Add padding to the inner carousel to create space for arrows */
+
+      .carousel-item {
+        flex: 0 0 100%;
+        justify-content: center;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+        &.active {
+          display: flex;
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .review-card {
+          min-width: 360px;
+          max-width: calc(100% - 120px); /* Adjust width to account for padding added */
+          padding: 20px;
+          background-color: #f9f9f9;
+          border-radius: 12px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          margin: 0 auto;
+          text-align: left;
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+          }
+
+          p {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #333;
+
+            strong {
+              color: #3f51b5;
+            }
+
+            mat-icon {
+              color: #ffb400;
+              font-size: 1.2rem;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(63, 81, 181, 0.8);
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 5;
+      transition: background-color 0.3s, transform 0.3s;
+
+      &:hover {
+        background-color: rgba(63, 81, 181, 1);
+        transform: scale(1.1);
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &.prev {
+        left: 5px; /* Position outside the review card */
+      }
+
+      &.next {
+        right: 5px; /* Position outside the review card */
+      }
+
+      &[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      mat-icon {
+        font-size: 24px;
+      }
+    }
+  }
+}

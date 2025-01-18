@@ -1,1 +1,184 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', 'Helvetica Neue', sans-serif; background-color: #f5f5f5; }
+
+// General Styles
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  color: #333;
+}
+
+button {
+  text-transform: none;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+}
+
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.snack-success {
+  background-color: #4caf50 !important; /* Vert pour succès */
+  color: #fff !important; /* Couleur du texte */
+}
+
+.snack-error {
+  background-color: #f44336; /* Rouge pour erreur */
+  color: #fff; /* Couleur du texte */
+}
+
+// Color Palette
+$custom-primary-palette: (
+  50: rgb(238, 242, 255),
+  100: rgb(224, 231, 255),
+  200: rgb(199, 210, 254),
+  300: rgb(165, 180, 252),
+  400: rgb(129, 140, 248),
+  500: rgb(99, 102, 241),
+  600: rgb(79, 70, 229),
+  700: rgb(67, 56, 202),
+  800: rgb(55, 48, 163),
+  900: rgb(49, 46, 129),
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white
+  )
+);
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$custom-primary: mat.m2-define-palette($custom-primary-palette);
+$custom-accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
+$custom-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+// Define the theme object.
+$fitness_website_front-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+    warn: $custom-warn,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+@include mat.all-component-themes($fitness_website_front-theme);
+
+// Navbar Styles
+.navbar {
+  background-color: mat.m2-get-color-from-palette($custom-primary, 600);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .nav-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+
+    a {
+      color: white;
+      font-size: 16px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Button Styles
+.mat-raised-button, .mat-stroked-button {
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.mat-raised-button {
+  background-color: mat.m2-get-color-from-palette($custom-primary, 500);
+  color: white;
+  &:hover {
+    background-color: mat.m2-get-color-from-palette($custom-primary, 600);
+  }
+}
+
+// Form Styles
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+
+  .mat-input-element {
+    font-size: 16px;
+  }
+
+  .mat-form-field-label {
+    font-size: 14px;
+  }
+}
+
+// Card Styles
+.mat-card {
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+
+  .mat-card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .mat-card-content {
+    font-size: 16px;
+    color: #555;
+  }
+}
+
+// Footer Styles
+.footer {
+  background-color: mat.m2-get-color-from-palette($custom-primary, 700);
+  color: white;
+  padding: 20px;
+  text-align: center;
+
+  a {
+    color: white;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Comment out the line below if you want to use the deprecated color inputs.
+// @include mat.color-variants-backwards-compatibility($fitness_website_front-theme);

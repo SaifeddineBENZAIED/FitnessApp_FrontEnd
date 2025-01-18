@@ -1,0 +1,25 @@
+<div class="user-review-container mat-elevation-z3">
+  <div *ngIf="!hasReview" class="no-review-message">
+      <p>You haven't added a review yet. Please add one below:</p>
+      <form [formGroup]="reviewForm">
+          <mat-form-field appearance="outline">
+              <mat-label>Rating</mat-label>
+              <input matInput formControlName="rating" type="number" min="0" max="5">
+              <mat-error *ngIf="reviewForm.get('rating')?.invalid">Rating is required and must be between 0 and 5.</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Comment</mat-label>
+              <textarea matInput formControlName="content"></textarea>
+              <mat-error *ngIf="reviewForm.get('content')?.invalid">Comment is required.</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="submitReview()">Submit</button>
+      </form>
+  </div>
+  <div *ngIf="hasReview" class="existing-review">
+      <h5>Your Review:</h5>
+      <p><strong>Rating:</strong> {{ userReview.rating }}</p>
+      <p><strong>Comment:</strong> {{ userReview.content }}</p>
+      <p><strong>Date:</strong> {{ userReview.updated_at | date:'short' }}</p>
+      <button mat-raised-button color="primary" (click)="openEditDialog()">Edit Review</button>
+  </div>
+</div>

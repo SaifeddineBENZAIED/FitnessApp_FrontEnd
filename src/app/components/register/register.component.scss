@@ -1,0 +1,225 @@
+.register-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #ffffff; /* Changed to white for better contrast */
+  border-radius: 15px; /* Slightly more rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+  animation: fadeInUp 0.6s ease-out; /* Smooth entrance animation */
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600; /* Make the title bolder */
+    position: relative;
+  }
+
+  .profile-image-section {
+    text-align: center;
+    margin-bottom: 20px;
+  
+    button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+  
+      img.profile-image {
+        border-radius: 50%;
+        border: 3px solid #ddd;
+        object-fit: cover;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+  
+      img.profile-image:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  .form-floating {
+    position: relative;
+    margin-bottom: 20px;
+
+    .form-control {
+      height: auto;
+      width: 100%;
+      border-radius: 5px;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+      background-color: #f9f9f9; /* Slightly softer background for inputs */
+    }
+
+    .mat-select {
+      height: auto;
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 5px;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+      background-color: #f9f9f9; /* Slightly softer background for inputs */
+    }
+    
+    .form-control:focus {
+      border-color: #80deea; /* Focus color */
+      box-shadow: 0 0 5px rgba(128, 222, 234, 0.5); /* Add glow effect */
+    }
+    
+    label {
+      font-size: 1rem;
+      color: #888;
+      transition: all 0.3s ease;
+    }
+
+    .invalid-feedback {
+      color: red;
+      font-size: 0.875rem;
+      margin-top: 5px;
+      animation: shake 0.3s ease; /* Animation when error appears */
+    }
+
+    mat-form-field {
+      width: 100%;
+      background-color: #ffffff; /* White background for better contrast */
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      margin-top: 10px;
+
+      .mat-form-field-infix {
+        padding: 0.75rem 0.5rem;
+      }
+
+      mat-label {
+        font-weight: 500;
+      }
+    
+      mat-select {
+        background-color: #f9f9f9;
+        border-radius: 4px;
+        padding: 12px;
+        &::ng-deep .mat-select-trigger {
+          padding: 0.75rem;
+        }
+      }
+    
+      mat-chip-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    
+        mat-chip {
+          background-color: #e0e0e0;
+          border-radius: 16px;
+          padding: 4px 8px;
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          color: #333;
+
+          mat-icon {
+            font-size: 18px;
+            margin-left: 4px;
+            cursor: pointer;
+          }
+        }
+      }
+    
+      mat-option {
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        margin-bottom: 2px;
+        
+        &:hover {
+          background-color: #e0f7fa;
+        }
+        
+        &.mat-selected {
+          background-color: #80deea !important;
+          color: #004d40;
+        }
+      }
+    
+      mat-hint {
+        margin-top: 2px;
+        font-size: 12px;
+        color: #757575;
+      }
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+      width: auto;
+      padding: 12px 40px; /* Slightly increased padding for a better button feel */
+      font-size: 16px;
+      border-radius: 25px; /* Rounded corners for buttons */
+      transition: background-color 0.3s ease, transform 0.2s ease;
+
+      &:hover {
+        background-color: #333; /* Darker color on hover */
+        color: #fff; /* Inverted text color on hover */
+        transform: translateY(-2px); /* Slight lift on hover */
+      }
+    }
+  }
+
+  .redirect-login {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+
+    .button-container button {
+      margin-top: 10px;
+      padding: 10px 30px;
+      font-size: 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #333;
+        color: #fff;
+      }
+    }
+  }
+
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.875rem;
+    animation: fadeIn 0.3s ease; /* Smooth fade-in for error messages */
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

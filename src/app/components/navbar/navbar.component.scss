@@ -1,0 +1,76 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background: linear-gradient(45deg, #303f9f, #1e88e5); /* Adjusted gradient for a deeper blue feel */
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    
+    .nav-logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: white;
+      margin-right: 30px;  /* Increased space between logo and links */
+      cursor: pointer;
+      transition: color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        color: #ff7043;  /* Energetic orange for the logo hover effect */
+        transform: scale(1.1);  /* Slightly increase size on hover */
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;  /* Increased gap between links */
+
+      a {
+        color: white;
+        font-size: 18px;  /* Increased font size for better visibility */
+        font-weight: 500; /* Medium weight for a modern look */
+        transition: color 0.3s ease, text-decoration 0.3s ease;
+
+        &:hover {
+          text-decoration: underline;
+          color: #ffd54f;  /* Bright yellow for a warm, energetic effect */
+        }
+      }
+    }
+  }
+
+  .spacer {
+    flex-grow: 1;
+  }
+
+  .user-menu {
+    display: flex;
+    align-items: center;
+
+    .user-button {
+      padding: 0;
+      border-radius: 50%;
+      transition: box-shadow 0.3s ease;
+      
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);  /* Slightly larger shadow on hover */
+      }
+    }
+
+    .user-image {
+      width: 50px;  /* Adjusted width for consistency */
+      height: 50px;  /* Adjusted height to match width */
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      border: 2px solid white;  /* Keeps the border visible against any background */
+      
+      &:hover {
+        transform: scale(1.1);  /* Slightly larger scale on hover */
+        border-color: #ff7043;  /* Matches the logo hover color */
+      }
+    }
+  }
+}

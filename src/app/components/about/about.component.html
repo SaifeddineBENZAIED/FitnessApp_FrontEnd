@@ -1,0 +1,28 @@
+<div class="about-container">
+  <mat-card class="about-card">
+    <mat-card-header>
+      <mat-card-title>About Us</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="fade-in">Welcome to Fitness Gym, your ultimate destination for achieving your fitness goals. We provide the best facilities and instructors to help you on your journey to a healthier life.</p>
+      <p class="fade-in">Our website offers a comprehensive range of functionalities:</p>
+      <ul>
+        <li class="fade-in" *ngFor="let feature of features" [@fadeIn]>
+          <mat-icon color="primary">{{ feature.icon }}</mat-icon>
+          <strong>{{ feature.title }}</strong> {{ feature.description }}
+        </li>
+      </ul>
+      <p class="fade-in" *ngIf="!isAuthenticated">
+        Join us today and take the first step towards a healthier, fitter you!
+      </p>
+      <p class="fade-in" *ngIf="isAuthenticated">
+        Welcome back, <b>{{ user.username }}</b>! Continue your journey towards a healthier, fitter you. We're here to support you every step of the way.
+      </p>
+
+      <div *ngIf="!isAuthenticated" class="button-row">
+        <button mat-raised-button color="primary" (click)="register()">Join Now</button>
+        <button mat-raised-button color="accent" (click)="redirectToLogin()">Login</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

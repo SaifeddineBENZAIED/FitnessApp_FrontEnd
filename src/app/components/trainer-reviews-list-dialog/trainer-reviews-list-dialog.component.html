@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Reviews for {{ data.trainer.first_name }} {{ data.trainer.last_name }}</h1>
+<div mat-dialog-content class="reviews-container">
+  <div *ngIf="reviews.length > 0">
+    <div *ngFor="let review of reviews" class="review-card">
+      <div class="review-header">
+        <p><strong>User:</strong> {{ review.user }}</p>
+        <p class="rating"><strong>Rating:</strong> {{ review.rating }} <mat-icon>star</mat-icon></p>
+      </div>
+      <p><strong>Comment:</strong> {{ review.comment }}</p>
+      <p class="review-date"><strong>Date:</strong> {{ review.created_at | date:'short' }}</p>
+    </div>
+  </div>
+  <div *ngIf="reviews.length === 0" class="no-reviews">
+    <p>No reviews available for this trainer.</p>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onClose()">Close</button>
+</div>

@@ -1,0 +1,165 @@
+<div class="register-container">
+  <h2>Register</h2>
+
+  <!-- Profile Image Upload Section -->
+  <div class="profile-image-section">
+    <button (click)="triggerFileInput()" style="background-color: transparent; border: none;">
+      <img [src]="imageUrl" class="profile-image" height="120px" width="120px" id="profileImage">
+    </button>
+    <input type="file" accept="image/*" hidden #fileInput (change)="onFileSelected($event)">
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="floatingEmail" formControlName="email" placeholder="name@example.com">
+      <label for="floatingEmail">Email address</label>
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="invalid-feedback d-block">
+        Valid email is required.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingUsername" formControlName="username" placeholder="Enter your username">
+      <label for="floatingUsername">Username</label>
+      <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="invalid-feedback d-block">
+        Username is required.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="floatingPassword" formControlName="password" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="invalid-feedback d-block">
+        Password is required.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="floatingConfirmPassword" formControlName="confirmPassword" placeholder="Confirm Password">
+      <label for="floatingConfirmPassword">Confirm Password</label>
+      <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="invalid-feedback d-block">
+        Confirm Password is required.
+      </div>
+      <div *ngIf="registerForm.hasError('passwordMismatch')" class="invalid-feedback d-block">
+        Passwords do not match.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="number" class="form-control" id="floatingAge" formControlName="age" placeholder="Enter your age">
+      <label for="floatingAge">Age</label>
+      <div *ngIf="registerForm.get('age')?.invalid && registerForm.get('age')?.touched" class="invalid-feedback d-block">
+        Age is required.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="number" class="form-control" id="floatingHeight" formControlName="height" placeholder="Enter your height">
+      <label for="floatingHeight">Height (cm)</label>
+      <div *ngIf="registerForm.get('height')?.invalid && registerForm.get('height')?.touched" class="invalid-feedback d-block">
+        Height is required.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="number" class="form-control" id="floatingWeight" formControlName="weight" placeholder="Enter your weight">
+      <label for="floatingWeight">Weight (kg)</label>
+      <div *ngIf="registerForm.get('weight')?.invalid && registerForm.get('weight')?.touched" class="invalid-feedback d-block">
+        Weight is required.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <select class="form-select" id="floatingGender" formControlName="gender">
+        <option value="" disabled>Select your gender</option>
+        <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+      </select>
+      <div *ngIf="registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched" class="invalid-feedback d-block">
+        Gender is required.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <select class="form-select" id="floatingFitnessGoal" formControlName="fitness_goal">
+        <option value="" disabled>Select your fitness goal</option>
+        <option *ngFor="let goal of fitnessGoals" [value]="goal">{{ goal }}</option>
+      </select>
+      <div *ngIf="registerForm.get('fitness_goal')?.invalid && registerForm.get('fitness_goal')?.touched" class="invalid-feedback d-block">
+        Fitness goal is required.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <select class="form-select" id="floatingActivityLevel" formControlName="activity_level">
+        <option value="" disabled>Select your activity level</option>
+        <option *ngFor="let level of activityLevels" [value]="level">{{ level }}</option>
+      </select>
+      <div *ngIf="registerForm.get('activity_level')?.invalid && registerForm.get('activity_level')?.touched" class="invalid-feedback d-block">
+        Activity level is required.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <select class="form-select" id="floatingExperienceLevel" formControlName="experience_level">
+        <option value="" disabled>Select your experience level</option>
+        <option *ngFor="let level of experienceLevels" [value]="level">{{ level }}</option>
+      </select>
+      <div *ngIf="registerForm.get('experience_level')?.invalid && registerForm.get('experience_level')?.touched" class="invalid-feedback d-block">
+        Experience level is required.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingPhoneNumber" formControlName="phone_number" placeholder="Enter your phone number">
+      <label for="floatingPhoneNumber">Phone Number</label>
+      <div *ngIf="registerForm.get('phone_number')?.invalid" class="invalid-feedback d-block">
+        Invalid phone number.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingCountry" formControlName="country" placeholder="Select your country">
+      <label for="floatingCountry">Country</label>
+      <div *ngIf="registerForm.get('country')?.invalid" class="invalid-feedback d-block">
+        Invalid country.
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>Dietary Preferences</mat-label>
+        <mat-select formControlName="dietary_preferences" multiple [compareWith]="compareFn" placeholder="Select dietary preferences">
+          <mat-select-trigger>
+            <mat-chip *ngFor="let preference of registerForm.get('dietary_preferences')?.value" [removable]="true" (removed)="removePreference(preference)">
+              {{preference}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-select-trigger>
+          <mat-option *ngFor="let preference of dietaryPreferences" [value]="preference">
+            {{preference}}
+          </mat-option>
+        </mat-select>
+        <mat-hint>Optional* (Select one or more)</mat-hint>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-floating mb-3">
+      <mat-form-field appearance="fill" class="custom-mat-form-field">
+        <mat-label>Medical Conditions</mat-label>
+        <mat-select formControlName="medical_conditions" multiple [compareWith]="compareFn" placeholder="Select medical conditions">
+          <mat-select-trigger>
+            <mat-chip *ngFor="let condition of registerForm.get('medical_conditions')?.value" [removable]="true" (removed)="removeCondition(condition)">
+              {{condition}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-select-trigger>
+          <mat-option *ngFor="let condition of medicalConditions" [value]="condition">
+            {{condition}}
+          </mat-option>
+        </mat-select>
+        <mat-hint>Optional* (Select one or more)</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Register</button>
+    </div>
+  </form>
+
+  <div class="redirect-login">
+    <p>Already have an account?</p>
+    <div class="button-container">
+      <button mat-raised-button color="accent" (click)="redirectToLogin()">Login</button>
+    </div>
+  </div>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</div>

@@ -1,0 +1,27 @@
+<div class="container mb-3">
+  <h1 mat-dialog-title>{{ exercise?.name }}</h1>
+  <div mat-dialog-content>
+    <div class="exercise-details">
+      <div class="exercise-image">
+        <img [src]="exercise.image" (error)="onImageError($event)" alt="{{ exercise.name }}">
+      </div>
+      <div class="exercise-info">
+        <p *ngIf="muscleGroups.length"><strong>Muscle Groups:</strong> {{ muscleGroups.join(', ') }}</p>
+        <p *ngIf="exercise?.description">
+          <strong>Description:</strong> 
+          {{ extractDescription(exercise.description) }}
+        </p>
+        <p *ngIf="exercise?.howToDo">
+          <strong>How to Do It:</strong>
+          {{ exercise.howToDo }}
+        </p>
+      </div>
+    </div>
+    <div class="exercise-video" *ngIf="exercise?.video_url">
+      <iframe [src]="exercise.video_url | safeUrl" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onClose()">Close</button>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="exercise-search-container">
+  <h1>Awesome Exercises You Should Know</h1>
+  <div class="search-bar">
+    <input type="text" placeholder="Search Exercises" [(ngModel)]="searchQuery" (input)="onSearchChange()">
+  </div>
+  <h2>Search by muscle</h2>
+  <div class="muscle-filter">
+    <div class="muscle-buttons-container">
+      <div class="muscle-buttons">
+        <button *ngFor="let muscle of muscles" mat-button (click)="filterByMuscle(muscle)" [class.active]="selectedMuscle === muscle">{{ muscle }}</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <div class="exercise-list">
+    <mat-grid-list cols="3" rowHeight="1:1">
+      <mat-grid-tile *ngFor="let exercise of paginatedExercises">
+        <div class="exercise-card" (click)="openDialog(exercise)">
+          <img [src]="exercise.image_url" (error)="onImageError($event)" height="100px" width="70px" alt="{{ exercise.name }}">
+          <p>{{ exercise.name }}</p>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="pagination">
+      <button mat-button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button mat-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </div>
+</div>
